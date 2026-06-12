@@ -53,18 +53,20 @@ type Filesystem interface {
 Read = open & inspect images · Write = mutate in place · Format = create a fresh image.
 Per-driver details on the [docs site](https://go-filesystems.github.io/docs/drivers/).
 
-| Module | Read | Write | Format | Symlinks | On-disk format |
-|---|:--:|:--:|:--:|:--:|---|
-| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | ✅ | Real APFS on-disk (kext-mountable), GPT-aware |
-| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
-| [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✕ | exFAT |
-| [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
-| [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✕ | FAT32 |
-| [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✕ | Minimal in-image blob model — NOT the real NTFS on-disk format |
-| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store (non-authenticated) |
-| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | ✅ | UFS2 (FreeBSD 14.x); UFS1 not supported |
-| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | XFS v5 (CRC32c, ftype) |
-| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | Single pool / single vdev (test-oriented subset) |
+| Module | Read | Write | Format | Label | Symlinks | On-disk format |
+|---|:--:|:--:|:--:|:--:|:--:|---|
+| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | — | ✅ | Real APFS on-disk (kext-mountable), GPT-aware |
+| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | ✅ | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
+| [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✅ | ✕ | exFAT |
+| [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
+| [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | FAT32 |
+| [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | Minimal in-image blob model — NOT the real NTFS on-disk format |
+| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store (non-authenticated) |
+| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | UFS2 (FreeBSD 14.x); UFS1 not supported |
+| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | XFS v5 (CRC32c, ftype) |
+| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | — | Single pool / single vdev (test-oriented subset) |
+
+Read = open & inspect · Write = mutate in place · Format = create a fresh image · Label = volume label (`Labeller`).
 
 ## Links
 
