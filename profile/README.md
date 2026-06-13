@@ -2,7 +2,7 @@
 
 <h1 align="center">go-filesystems</h1>
 <p align="center">Pure-Go filesystem drivers — read & write disk images, no cgo, no root.</p>
-<p align="center">[![docs](https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white)](https://go-filesystems.github.io/docs/) ![drivers](https://img.shields.io/badge/drivers-10-0079A8?style=flat-square) ![Go](https://img.shields.io/badge/Go-1.25-00ADD8?style=flat-square&logo=go&logoColor=white) ![license](https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square)</p>
+<p align="center">[![docs](https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white)](https://go-filesystems.github.io/docs/) ![drivers](https://img.shields.io/badge/drivers-11-0079A8?style=flat-square) ![Go](https://img.shields.io/badge/Go-1.25-00ADD8?style=flat-square&logo=go&logoColor=white) ![license](https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square)</p>
 
 ---
 
@@ -30,7 +30,7 @@ type Filesystem interface {
 }
 ```
 
-## Filesystem drivers (10)
+## Filesystem drivers (11)
 
 | | Module | Filesystem |
 |---|---|---|
@@ -40,6 +40,7 @@ type Filesystem interface {
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ext4.png" width="34"> | [`ext4`](https://github.com/go-filesystems/ext4) | Linux ext4 — extents, 64-bit, journaling, metadata_csum. |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-fat32.png" width="34"> | [`fat32`](https://github.com/go-filesystems/fat32) | FAT with 32-bit allocation. |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ntfs.png" width="34"> | [`ntfs`](https://github.com/go-filesystems/ntfs) | Windows NT filesystem. |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-squashfs.png" width="34"> | [`squashfs`](https://github.com/go-filesystems/squashfs) | Compressed read-only archive filesystem. |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-uefi.png" width="34"> | [`uefi`](https://github.com/go-filesystems/uefi) | EFI System Partition (FAT-based). |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ufs.png" width="34"> | [`ufs`](https://github.com/go-filesystems/ufs) | Unix File System (BSD). |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-xfs.png" width="34"> | [`xfs`](https://github.com/go-filesystems/xfs) | High-performance journaling filesystem. |
@@ -61,8 +62,9 @@ Per-driver details on the [docs site](https://go-filesystems.github.io/docs/driv
 | [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
 | [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | FAT32 |
 | [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | Minimal in-image blob model — NOT the real NTFS on-disk format |
-| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store (non-authenticated) |
-| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | UFS2 (FreeBSD 14.x); UFS1 not supported |
+| [`squashfs`](https://github.com/go-filesystems/squashfs) | ✅ | ✕ | ✕ | — | ✅ | SquashFS 4.0 — read-only archive; gzip blocks + fragments |
+| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
+| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | UFS2 (FreeBSD 14.x) read+write; UFS1 read |
 | [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | XFS v5 (CRC32c, ftype) |
 | [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | — | Single pool / single vdev (test-oriented subset) |
 
