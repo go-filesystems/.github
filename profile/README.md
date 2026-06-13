@@ -62,7 +62,7 @@ Per-driver details on the [docs site](https://go-filesystems.github.io/docs/driv
 | [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✅ | ✕ | exFAT |
 | [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
 | [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | FAT32 |
-| [`iso9660`](https://github.com/go-filesystems/iso9660) | ✅ | ✕ | ✕ | — | ✅ | ISO 9660 / ECMA-119 + Rock Ridge (names/perms/symlinks); Joliet planned |
+| [`iso9660`](https://github.com/go-filesystems/iso9660) | ✅ | ✕ | ✕ | — | ✅ | ISO 9660 / ECMA-119 + Rock Ridge (names/perms/symlinks) + Joliet (UCS-2 names) |
 | [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | Minimal in-image blob model — NOT the real NTFS on-disk format |
 | [`squashfs`](https://github.com/go-filesystems/squashfs) | ✅ | ✕ | ✕ | — | ✅ | SquashFS 4.0 — read-only archive; gzip blocks + fragments |
 | [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
