@@ -2,7 +2,7 @@
 
 <h1 align="center">go-filesystems</h1>
 <p align="center">Pure-Go filesystem drivers — read & write disk images, no cgo, no root.</p>
-<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-12-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.25-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square" alt="license"></p>
+<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-12-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square" alt="license"></p>
 
 ---
 
