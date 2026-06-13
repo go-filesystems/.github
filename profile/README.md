@@ -66,7 +66,7 @@ Per-driver details on the [docs site](https://go-filesystems.github.io/docs/driv
 | [`ntfs`](https://github.com/go-filesystems/ntfs) | Windows | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | Minimal in-image blob model — NOT the real NTFS on-disk format |
 | [`squashfs`](https://github.com/go-filesystems/squashfs) | Linux | ✅ | ✕ | ✅ | — | ✅ | — | — | — | SquashFS 4.0 read-only archive; gzip/xz/zstd/lzo/lz4 blocks + fragments |
 | [`uefi`](https://github.com/go-filesystems/uefi) | firmware (UEFI) | ✅ | ✅ | ✅ | — | — | — | — | — | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
-| [`ufs`](https://github.com/go-filesystems/ufs) | BSD | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✕ | — | UFS2 (FreeBSD 14.x) read+write; UFS1 read |
+| [`ufs`](https://github.com/go-filesystems/ufs) | BSD | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✕ | — | UFS2 (FreeBSD 14.x) read+write; UFS1 read; NetBSD/OpenBSD FFSv1/FFSv2 (via `ffs` alias module) |
 | [`xfs`](https://github.com/go-filesystems/xfs) | Linux | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | — | ✕ | XFS v5 (CRC32c, ftype) |
 | [`zfs`](https://github.com/go-filesystems/zfs) | illumos / BSD / Linux | ✅ | ✅ | ✅ | — | — | ✕ | ✕ | ✕ | Single pool / single vdev (test-oriented subset) |
 
