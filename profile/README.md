@@ -2,7 +2,7 @@
 
 <h1 align="center">go-filesystems</h1>
 <p align="center">Pure-Go filesystem drivers — read & write disk images, no cgo, no root.</p>
-<p align="center">[![docs](https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white)](https://go-filesystems.github.io/docs/) ![drivers](https://img.shields.io/badge/drivers-12-0079A8?style=flat-square) ![Go](https://img.shields.io/badge/Go-1.25-00ADD8?style=flat-square&logo=go&logoColor=white) ![license](https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square)</p>
+<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-12-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.25-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-MIT-0A6E96?style=flat-square" alt="license"></p>
 
 ---
 
@@ -55,22 +55,23 @@ type Filesystem interface {
 Read = open & inspect images · Write = mutate in place · Format = create a fresh image.
 Per-driver details on the [docs site](https://go-filesystems.github.io/docs/drivers/).
 
-| Module | Read | Write | Format | Label | Symlinks | On-disk format |
-|---|:--:|:--:|:--:|:--:|:--:|---|
-| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | — | ✅ | Real APFS on-disk (kext-mountable), GPT-aware |
-| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | ✅ | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
-| [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✅ | ✕ | exFAT |
-| [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
-| [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | FAT32 |
-| [`iso9660`](https://github.com/go-filesystems/iso9660) | ✅ | ✕ | ✕ | — | ✅ | ISO 9660 / ECMA-119 + Rock Ridge (names/perms/symlinks) + Joliet (UCS-2 names) |
-| [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | Minimal in-image blob model — NOT the real NTFS on-disk format |
-| [`squashfs`](https://github.com/go-filesystems/squashfs) | ✅ | ✕ | ✅ | — | ✅ | SquashFS 4.0 read-only archive; gzip/xz/zstd/lzo/lz4 blocks + fragments |
-| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
-| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | UFS2 (FreeBSD 14.x) read+write; UFS1 read |
-| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | XFS v5 (CRC32c, ftype) |
-| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | — | Single pool / single vdev (test-oriented subset) |
+| Module | Read | Write | Format | Label | Symlinks | Quota | Snapshots | Encryption | On-disk format |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|
+| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | — | ✅ | — | ✅ | ✕ | Real APFS on-disk (kext-mountable), GPT-aware |
+| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | ✕ | — | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
+| [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | exFAT |
+| [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | — | ✕ | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
+| [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | FAT32 |
+| [`iso9660`](https://github.com/go-filesystems/iso9660) | ✅ | ✕ | ✕ | — | ✅ | — | — | — | ISO 9660 / ECMA-119 + Rock Ridge (names/perms/symlinks) + Joliet (UCS-2 names) |
+| [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | Minimal in-image blob model — NOT the real NTFS on-disk format |
+| [`squashfs`](https://github.com/go-filesystems/squashfs) | ✅ | ✕ | ✅ | — | ✅ | — | — | — | SquashFS 4.0 read-only archive; gzip/xz/zstd/lzo/lz4 blocks + fragments |
+| [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | — | — | — | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
+| [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✕ | — | UFS2 (FreeBSD 14.x) read+write; UFS1 read |
+| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | — | ✕ | XFS v5 (CRC32c, ftype) |
+| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | — | ✕ | ✕ | ✕ | Single pool / single vdev (test-oriented subset) |
 
-Read = open & inspect · Write = mutate in place · Format = create a fresh image · Label = volume label (`Labeller`).
+**Legend:** ✅ supported by the driver · ✕ not yet implemented (the on-disk format has the feature) · — not applicable (the format has no such feature).
+Read = open & inspect · Write = mutate in place · Format = create a fresh image · Label = volume label (`Labeller`). Quota / Snapshots / Encryption reflect what the **driver** implements today.
 
 ## Links
 
