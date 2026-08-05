@@ -2,7 +2,7 @@
 
 <h1 align="center">go-filesystems</h1>
 <p align="center">Pure-Go filesystem drivers — read & write disk images, no cgo, no root.</p>
-<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-12-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-BSD--3--Clause-0A6E96?style=flat-square" alt="license"></p>
+<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-15-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-BSD--3--Clause-0A6E96?style=flat-square" alt="license"></p>
 
 ---
 
@@ -30,22 +30,29 @@ type Filesystem interface {
 }
 ```
 
-## Filesystem drivers (12)
+## Filesystem drivers (15)
 
 | | Module | Filesystem | On-disk format |
 |---|---|---|---|
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-apfs.png" width="34"> | [`apfs`](https://github.com/go-filesystems/apfs) | Apple File System. | Real APFS on-disk (kext-mountable), GPT-aware |
-| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-btrfs.png" width="34"> | [`btrfs`](https://github.com/go-filesystems/btrfs) | Copy-on-write Linux fs with snapshots and subvolumes. | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-btrfs.png" width="34"> | [`btrfs`](https://github.com/go-filesystems/btrfs) | Copy-on-write Linux fs; read-only subvolumes/snapshots. | Single-device, CRC32c (btrfs-progs ≥ 5.x) |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-exfat.png" width="34"> | [`exfat`](https://github.com/go-filesystems/exfat) | Extended FAT for large media. | exFAT |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ext4.png" width="34"> | [`ext4`](https://github.com/go-filesystems/ext4) | Linux ext4 — extents, 64-bit, journaling, metadata_csum. | ext4 — extents, 64-bit, flex_bg, dir htree, metadata_csum (CRC32c) |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-fat32.png" width="34"> | [`fat32`](https://github.com/go-filesystems/fat32) | FAT with 32-bit allocation. | FAT32 |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ffs.png" width="34"> | [`ffs`](https://github.com/go-filesystems/ffs) | NetBSD/OpenBSD Berkeley Fast File System. | FFSv1/FFSv2 (= UFS1/UFS2), re-export of `ufs` |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-hfsplus.png" width="34"> | [`hfsplus`](https://github.com/go-filesystems/hfsplus) | Apple HFS+ / HFSX (Mac OS Extended). | Big-endian catalog + extents-overflow B-trees |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-iso9660.png" width="34"> | [`iso9660`](https://github.com/go-filesystems/iso9660) | ISO 9660 / ECMA-119 optical-disc filesystem. | ISO 9660 / ECMA-119 + Rock Ridge (names/perms/symlinks) + Joliet (UCS-2 names) |
-| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ntfs.png" width="34"> | [`ntfs`](https://github.com/go-filesystems/ntfs) | Windows NT filesystem. | Minimal in-image blob model — NOT the real NTFS on-disk format |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ntfs.png" width="34"> | [`ntfs`](https://github.com/go-filesystems/ntfs) | Windows NT filesystem. | Minimal in-image blob model — NOT the real NTFS on-disk format; separate read-only real-NTFS reader |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-squashfs.png" width="34"> | [`squashfs`](https://github.com/go-filesystems/squashfs) | Compressed read-only archive filesystem. | SquashFS 4.0 read-only archive; gzip/xz/zstd/lzo/lz4 blocks + fragments |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-uefi.png" width="34"> | [`uefi`](https://github.com/go-filesystems/uefi) | EFI System Partition (FAT-based). | OVMF/EDK2 NvVar variable store; time-based authenticated writes |
 | <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-ufs.png" width="34"> | [`ufs`](https://github.com/go-filesystems/ufs) | Unix File System (BSD). | UFS2 (FreeBSD 14.x) read+write; UFS1 read; NetBSD/OpenBSD FFSv1/FFSv2 (via `ffs` alias module) |
-| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-xfs.png" width="34"> | [`xfs`](https://github.com/go-filesystems/xfs) | High-performance journaling filesystem. | XFS v5 (CRC32c, ftype) |
-| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-zfs.png" width="34"> | [`zfs`](https://github.com/go-filesystems/zfs) | Copy-on-write pooled storage filesystem. | Single pool / single vdev (test-oriented subset) |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-xfs.png" width="34"> | [`xfs`](https://github.com/go-filesystems/xfs) | High-performance journaling filesystem. | XFS v5 (CRC32c, ftype), reflink + quotas |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems-zfs.png" width="34"> | [`zfs`](https://github.com/go-filesystems/zfs) | Copy-on-write pooled storage filesystem. | Single pool, single-vdev writer; multi-vdev/RAID-Z read |
+| <img src="https://raw.githubusercontent.com/go-filesystems/brand/main/avatar/go-filesystems.png" width="34"> | [`oci`](https://github.com/go-filesystems/oci) | Read-only OCI/Docker image filesystem. | Merged tar-layer overlay (whiteouts, opaque dirs, hardlinks) — image-as-filesystem, not an on-disk format |
+
+Also in the org: [`detect`](https://github.com/go-filesystems/detect), a
+`blkid`-style type prober and driver-opener registry that dispatches to the
+drivers above (not an on-disk format, so it has no row here).
 
 > More drivers are added over time. This list reflects the repos that
 > actually exist in the org.
@@ -57,18 +64,21 @@ Per-driver details on the [docs site](https://go-filesystems.github.io/docs/driv
 
 | Module | Read | Write | Format | Label | Symlinks | Quota | Snapshots | Encryption | Platform |
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|
-| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | — | ✅ | — | ✅ | ✕ | macOS / iOS |
-| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | ✕ | — | Linux |
+| [`apfs`](https://github.com/go-filesystems/apfs) | ✅ | ✅ | ✅ | — | ✅ | — | ✅ | ✅ | macOS / iOS |
+| [`btrfs`](https://github.com/go-filesystems/btrfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | ✅ read-only | — | Linux |
 | [`exfat`](https://github.com/go-filesystems/exfat) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | Windows / removable |
 | [`ext4`](https://github.com/go-filesystems/ext4) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | — | ✕ | Linux |
 | [`fat32`](https://github.com/go-filesystems/fat32) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | cross-platform |
+| [`ffs`](https://github.com/go-filesystems/ffs) | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✕ | — | BSD |
+| [`hfsplus`](https://github.com/go-filesystems/hfsplus) | ✅ | ✅ | ✅ | ✅ | ✅ | — | — | — | macOS (legacy) |
 | [`iso9660`](https://github.com/go-filesystems/iso9660) | ✅ | ✕ | ✕ | — | ✅ | — | — | — | cross-platform (optical) |
 | [`ntfs`](https://github.com/go-filesystems/ntfs) | ✅ | ✅ | ✅ | ✅ | ✕ | — | — | — | Windows |
 | [`squashfs`](https://github.com/go-filesystems/squashfs) | ✅ | ✕ | ✅ | — | ✅ | — | — | — | Linux |
 | [`uefi`](https://github.com/go-filesystems/uefi) | ✅ | ✅ | ✅ | — | — | — | — | — | firmware (UEFI) |
 | [`ufs`](https://github.com/go-filesystems/ufs) | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✕ | — | BSD |
-| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✕ | — | ✕ | Linux |
-| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | — | ✕ | ✕ | ✕ | illumos / BSD / Linux |
+| [`xfs`](https://github.com/go-filesystems/xfs) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | ✕ | Linux |
+| [`zfs`](https://github.com/go-filesystems/zfs) | ✅ | ✅ | ✅ | — | ✅ | ✕ | ✅ | ✅ read-only | illumos / BSD / Linux |
+| [`oci`](https://github.com/go-filesystems/oci) | ✅ | ✕ | — | — | ✅ | — | — | — | any (image, not disk) |
 
 **Legend:** ✅ supported by the driver · ✕ not yet implemented (the on-disk format has the feature) · — not applicable (the format has no such feature).
 Read = open & inspect · Write = mutate in place · Format = create a fresh image · Label = volume label (`Labeller`). Quota / Snapshots / Encryption reflect what the **driver** implements today.
