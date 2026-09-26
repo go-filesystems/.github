@@ -74,6 +74,19 @@ these too.
 | [`xar`](https://github.com/go-filesystems/xar) | XAR — the macOS `.pkg` installer: a gzip'd XML table of contents and a heap |
 | [`unarchive`](https://github.com/go-filesystems/unarchive) | any of the above, sniffed from the bytes rather than the extension |
 
+## A parser the modules share, and no filesystem (1)
+
+| Module | What it parses |
+|---|---|
+| [`cpio`](https://github.com/go-filesystems/cpio) | cpio records — newc, crc, odc and the old binary variant, both byte orders |
+
+It has no row in the section above on purpose. Two modules needed this parser
+and needed different filesystems over it: [`unarchive`](https://github.com/go-filesystems/unarchive)
+indexes into an `io.ReaderAt` it keeps open, [`rpm`](https://github.com/go-filesystems/rpm)
+has the whole payload decompressed in memory. Sharing the filesystem would have
+meant one of them taking the other's shape; sharing the parser costs neither
+anything — and the parser is where the defects live.
+
 ## Serving one to something else (5)
 
 The other direction: take any driver above and put it on a port, so a machine
