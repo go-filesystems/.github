@@ -58,7 +58,7 @@ drivers above (not an on-disk format, so it has no row here).
 > the sections below carry the rest of the org, which it used to claim to
 > cover and did not — nine repositories were named on no page at all.
 
-## Archives, read as a filesystem (6)
+## Archives, read as a filesystem (7)
 
 Not on-disk formats, so they have no row above — but each one answers the same
 `filesystem.Filesystem` contract, so anything that walks a disk image walks
@@ -71,6 +71,7 @@ these too.
 | [`rpm`](https://github.com/go-filesystems/rpm) | RPM packages — the lead, the signature and header regions, and the payload |
 | [`sevenzip`](https://github.com/go-filesystems/sevenzip) | 7z, through `bodgit/sevenzip` — and it **writes** |
 | [`warc`](https://github.com/go-filesystems/warc) | WARC, ISO 28500 — reader **and** writer |
+| [`xar`](https://github.com/go-filesystems/xar) | XAR — the macOS `.pkg` installer: a gzip'd XML table of contents and a heap |
 | [`unarchive`](https://github.com/go-filesystems/unarchive) | any of the above, sniffed from the bytes rather than the extension |
 
 ## Serving one to something else (5)
