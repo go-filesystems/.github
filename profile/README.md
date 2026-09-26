@@ -54,8 +54,43 @@ Also in the org: [`detect`](https://github.com/go-filesystems/detect), a
 `blkid`-style type prober and driver-opener registry that dispatches to the
 drivers above (not an on-disk format, so it has no row here).
 
-> More drivers are added over time. This list reflects the repos that
-> actually exist in the org.
+> More drivers are added over time. This table is the on-disk formats;
+> the sections below carry the rest of the org, which it used to claim to
+> cover and did not — nine repositories were named on no page at all.
+
+## Archives, read as a filesystem (6)
+
+Not on-disk formats, so they have no row above — but each one answers the same
+`filesystem.Filesystem` contract, so anything that walks a disk image walks
+these too.
+
+| Module | What it reads |
+|---|---|
+| [`cab`](https://github.com/go-filesystems/cab) | Microsoft Cabinet (`.cab`) |
+| [`rar`](https://github.com/go-filesystems/rar) | RAR, including multi-volume sets |
+| [`rpm`](https://github.com/go-filesystems/rpm) | RPM packages — the lead, the signature and header regions, and the payload |
+| [`sevenzip`](https://github.com/go-filesystems/sevenzip) | 7z, through `bodgit/sevenzip` — and it **writes** |
+| [`warc`](https://github.com/go-filesystems/warc) | WARC, ISO 28500 — reader **and** writer |
+| [`unarchive`](https://github.com/go-filesystems/unarchive) | any of the above, sniffed from the bytes rather than the extension |
+
+## Serving one to something else (5)
+
+The other direction: take any driver above and put it on a port, so a machine
+that cannot link Go can still read the image.
+
+| Module | Protocol |
+|---|---|
+| [`nfs`](https://github.com/go-filesystems/nfs) | NFSv3 — mountable on macOS, Linux and Windows |
+| [`smb`](https://github.com/go-filesystems/smb) | SMB2 |
+| [`sftp`](https://github.com/go-filesystems/sftp) | SFTP v3 — one TCP port, SSH keys, no client to install |
+| [`webdav`](https://github.com/go-filesystems/webdav) | WebDAV over HTTP — browsable and mountable |
+| [`s3`](https://github.com/go-filesystems/s3) | an S3-compatible object API |
+
+## Making a read-only image writable (1)
+
+| Module | What it does |
+|---|---|
+| [`overlay`](https://github.com/go-filesystems/overlay) | changes land in a spool, cheaply, and one rewrite happens when you say so |
 
 ## Support matrix
 
