@@ -100,6 +100,16 @@ that cannot link Go can still read the image.
 | [`webdav`](https://github.com/go-filesystems/webdav) | WebDAV over HTTP — browsable and mountable |
 | [`s3`](https://github.com/go-filesystems/s3) | an S3-compatible object API |
 
+## A host directory, as a filesystem (1)
+
+Every driver above decodes a format out of an image. This one does not: it
+hands each call to the host kernel, relative to one directory, so a server
+from the section above can serve a plain directory with no image in the way.
+
+| Module | What it does |
+|---|---|
+| [`osfs`](https://github.com/go-filesystems/osfs) | a host directory as a `Filesystem`, confined with [`os.Root`](https://pkg.go.dev/os#Root) |
+
 ## Making a read-only image writable (1)
 
 | Module | What it does |
