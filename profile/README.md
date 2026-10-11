@@ -116,6 +116,16 @@ from the section above can serve a plain directory with no image in the way.
 |---|---|
 | [`overlay`](https://github.com/go-filesystems/overlay) | changes land in a spool, cheaply, and one rewrite happens when you say so |
 
+## Moving bytes between two of them (1)
+
+Copying a range out of one driver and into another normally means pulling it
+through this process. When both ends are files of the host, it does not have
+to: the kernel can be asked to do the copy and the bytes never arrive here.
+
+| Module | What it does |
+|---|---|
+| [`hostcopy`](https://github.com/go-filesystems/hostcopy) | one call that becomes `copy_file_range(2)` when both files are the host's, and `ReadAt`/`WriteAt` when they are not |
+
 ## Support matrix
 
 Read = open & inspect images · Write = mutate in place · Format = create a fresh image.
