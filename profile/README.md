@@ -100,6 +100,25 @@ that cannot link Go can still read the image.
 | [`webdav`](https://github.com/go-filesystems/webdav) | WebDAV over HTTP — browsable and mountable |
 | [`s3`](https://github.com/go-filesystems/s3) | an S3-compatible object API |
 
+## The same filesystem, in another process (1)
+
+Not serving to a foreign client, but splitting one filesystem across two
+processes so the one that touches the files need not be the one that talks to
+the network. `Serve` answers requests against any driver above; `New` is that
+driver at the other end of the connection, with the same optional interfaces
+and the same errors — an errno comes back as itself, so
+`errors.Is(err, fs.ErrNotExist)` answers as it did on the server.
+
+[`go-fileshare/fileshare`](https://github.com/go-fileshare/fileshare) uses it to
+serve a person's files **as that person**: a worker under their uid holds the
+directory, behind a front that parses SMB, WebDAV or SFTP and holds no
+privilege. Neither side trusts the other's bytes — every frame and every field
+in it is bounded before anything is allocated for it.
+
+| Module | What it does |
+|---|---|
+| [`remote`](https://github.com/go-filesystems/remote) | a `Filesystem` served over any `io.ReadWriteCloser` — a socketpair to a child, a pipe, a TCP connection |
+
 ## A host directory, as a filesystem (1)
 
 Every driver above decodes a format out of an image. This one does not: it
