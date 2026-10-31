@@ -2,7 +2,7 @@
 
 <h1 align="center">go-filesystems</h1>
 <p align="center">Pure-Go filesystem drivers — read & write disk images, no cgo, no root.</p>
-<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-mkdocs--material-0A6E96?style=flat-square&logo=materialformkdocs&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-15-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.26-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-BSD--3--Clause-0A6E96?style=flat-square" alt="license"></p>
+<p align="center"><a href="https://go-filesystems.github.io/docs/"><img src="https://img.shields.io/badge/docs-hugo-0A6E96?style=flat-square&logo=hugo&logoColor=white" alt="docs"></a> <img src="https://img.shields.io/badge/drivers-15-0079A8?style=flat-square" alt="drivers"> <img src="https://img.shields.io/badge/Go-1.27-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/license-BSD--3--Clause-0A6E96?style=flat-square" alt="license"></p>
 
 ---
 
@@ -144,6 +144,12 @@ to: the kernel can be asked to do the copy and the bytes never arrive here.
 | Module | What it does |
 |---|---|
 | [`hostcopy`](https://github.com/go-filesystems/hostcopy) | one call that becomes `copy_file_range(2)` when both files are the host's, and `ReadAt`/`WriteAt` when they are not |
+
+## Trying one without installing anything (1)
+
+| Module | What it does |
+|---|---|
+| [`playground`](https://github.com/go-filesystems/playground) | the drivers compiled to WebAssembly: open a disk image in the browser and walk it. The image is read in the page and **nothing is uploaded** — [try it](https://go-filesystems.github.io/playground/) |
 
 ## Support matrix
 
