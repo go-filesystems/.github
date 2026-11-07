@@ -143,7 +143,8 @@ to: the kernel can be asked to do the copy and the bytes never arrive here.
 
 | Module | What it does |
 |---|---|
-| [`inflight`](https://github.com/go-filesystems/inflight) | bounded, optionally ordered concurrent request dispatch shared by the NFS, SMB and SFTP servers: per-connection and server-wide caps taken before a request is read, in-order or any-order replies, byte-range ordering, barriers |
+| [`inflight`](https://github.com/go-filesystems/inflight) | bounded, optionally ordered concurrent request dispatch shared by the NFS, SMB and SFTP servers: per-connection and server-wide caps taken before a request is read, in-order or any-order replies (v0.2.0 batches ready replies into one write), byte-range ordering, barriers |
+| [`ssh`](https://github.com/go-filesystems/ssh) | a fork of `golang.org/x/crypto/ssh` that flushes once per channel `Write` instead of once per packet: 96 → 32 writes per MiB; same API, to be reported upstream; used by `sftp` v0.11.0 |
 | [`hostcopy`](https://github.com/go-filesystems/hostcopy) | one call that becomes `copy_file_range(2)` when both files are the host's, and `ReadAt`/`WriteAt` when they are not |
 
 ## Trying one without installing anything (1)
