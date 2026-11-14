@@ -52,7 +52,10 @@ type Filesystem interface {
 
 Also in the org: [`detect`](https://github.com/go-filesystems/detect), a
 `blkid`-style type prober and driver-opener registry that dispatches to the
-drivers above (not an on-disk format, so it has no row here).
+drivers above (not an on-disk format, so it has no row here), and
+[`cfb`](https://github.com/go-filesystems/cfb), a read-only reader of the
+Microsoft Compound File Binary container (MS-CFB, OLE2: `.doc`, `.xls`, `.msg`,
+`.msi`), which is deliberately not a `Filesystem`.
 
 > More drivers are added over time. This table is the on-disk formats;
 > the sections below carry the rest of the org, which it used to claim to
