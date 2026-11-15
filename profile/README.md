@@ -137,6 +137,7 @@ from the section above can serve a plain directory with no image in the way.
 | Module | What it does |
 |---|---|
 | [`overlay`](https://github.com/go-filesystems/overlay) | changes land in a spool, cheaply, and one rewrite happens when you say so |
+| [`kerneljudge`](https://github.com/go-filesystems/kerneljudge) | the Linux kernel and the native `fsck` as the judge for go-filesystems drivers, run in a Tart VM |
 
 ## Moving bytes between two of them (1)
 
